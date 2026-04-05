@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import API_BASE_URL from '../config';
-import API_BASE_URL from '../config';
 import ForceGraph2D from 'react-force-graph-2d';
 import { Wifi, Clock, AlertTriangle, AlertOctagon } from 'lucide-react';
 
