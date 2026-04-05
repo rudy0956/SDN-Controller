@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+    networks:
+      - sdn-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "5173:80" # Mapping for both dev/prod convenience
+    depends_on:
+      - backend
+    networks:
+      - sdn-net
+
+networks:
+  sdn-net:
+    driver: bridge
