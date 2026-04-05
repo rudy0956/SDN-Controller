@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config';
+import API_BASE_URL from '../config';
 import ForceGraph2D from 'react-force-graph-2d';
 import { Wifi, Clock, AlertTriangle, AlertOctagon } from 'lucide-react';
 
@@ -8,11 +10,11 @@ const Dashboard = () => {
   const [metrics, setMetrics] = useState(null);
   const graphRef = useRef();
 
-  const fetchData = async () => {
+   const fetchData = async () => {
     try {
       const [topoRes, metricsRes] = await Promise.all([
-        axios.get('/api/topology'),
-        axios.get('/api/metrics/current')
+        axios.get(`${API_BASE_URL}/api/topology`),
+        axios.get(`${API_BASE_URL}/api/metrics/current`)
       ]);
       setTopology(topoRes.data);
       setMetrics(metricsRes.data);
@@ -20,6 +22,7 @@ const Dashboard = () => {
       console.error('API Error:', error);
     }
   };
+
 
   useEffect(() => {
     fetchData();

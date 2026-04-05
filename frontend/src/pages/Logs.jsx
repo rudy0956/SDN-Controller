@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config';
+import API_BASE_URL from '../config';
 import { AlertCircle, FileTerminal, RefreshCw } from 'lucide-react';
 
 const Logs = () => {
@@ -8,7 +10,7 @@ const Logs = () => {
 
   const fetchAlerts = async () => {
     try {
-      const res = await axios.get('/api/alerts');
+      const res = await axios.get(`${API_BASE_URL}/api/alerts`);
       setAlerts(res.data);
     } catch (error) {
       console.error(error);
@@ -45,9 +47,8 @@ const Logs = () => {
           <div className="divide-y divide-white/5">
             {alerts.map((alert) => (
               <div key={alert.id} className="p-6 hover:bg-white/5 transition-colors flex gap-6 items-start">
-                <div className={`mt-1 p-2 rounded-full ${
-                  alert.type === 'congestion' ? 'bg-red-500/20 text-red-400' : 'bg-blue-500/20 text-blue-400'
-                }`}>
+                <div className={`mt-1 p-2 rounded-full ${alert.type === 'congestion' ? 'bg-red-500/20 text-red-400' : 'bg-blue-500/20 text-blue-400'
+                  }`}>
                   <AlertCircle size={20} />
                 </div>
                 <div className="flex-1 space-y-2">

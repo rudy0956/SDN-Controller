@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config';
+import API_BASE_URL from '../config';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const Results = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get('/api/results/comparison').then(res => {
-      const payload = res.data;
+
+       axios.get(`${API_BASE_URL}/api/results/comparison`).then(res => {
+        const payload = res.data;
       // Transform for Recharts
       const chartData = [
         {
